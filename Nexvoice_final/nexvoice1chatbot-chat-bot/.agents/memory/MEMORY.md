@@ -1,0 +1,1 @@
+- [Supabase runtime compatibility](supabase-runtime.md) — Supabase packages currently require Node.js 22+, while the project runtime is Node 20.
