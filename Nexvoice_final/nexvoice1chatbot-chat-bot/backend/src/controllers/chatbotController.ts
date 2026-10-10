@@ -135,8 +135,9 @@ export const ChatbotController = {
       }
 
       if (!providerResponse.ok) {
-        return res.status(502).json({ error: genericFailure });
-      }
+  console.error('OpenRouter error', providerResponse.status, JSON.stringify(providerBody));
+  return res.status(502).json({ error: genericFailure });
+}
 
       const validatedProviderBody = providerResponseSchema.safeParse(providerBody);
       const message = validatedProviderBody.success
@@ -148,9 +149,10 @@ export const ChatbotController = {
       }
 
       return res.json({ message });
-    } catch {
-      return res.status(502).json({ error: genericFailure });
-    } finally {
+    } } catch (err) {
+  console.error('Chat request failed', err);
+  return res.status(502).json({ error: genericFailure });
+} finally {
       clearTimeout(timeout);
     }
   },
