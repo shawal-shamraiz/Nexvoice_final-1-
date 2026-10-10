@@ -4,7 +4,7 @@ import { config } from './config/env.js';
 import apiRouter from './routes/api.js';
 
 const app = express();
-
+app.set('trust proxy', 1);
 const allowedOrigins = [
   config.clientOriginUser,
   config.clientOriginAdmin,
